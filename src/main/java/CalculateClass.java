@@ -1,9 +1,33 @@
 import java.util.ArrayList;
 
 public class CalculateClass {
+    public static double calculateDeterminant(ArrayList<ArrayList<Integer>> matrix, int size) {
+        double determinant = 0.0;
+
+        for (int i = 0; i < size; i++) {
+            determinant += determinantBigMatrix(matrix, size, i);
+        }
+
+        return determinant;
+    }
+
+    public static double calculateDeltaMatrixDeterminant(ArrayList<ArrayList<Integer>> deltaMatrix, int mainMatrixSize) {
+        double determinant = 0.0;
+        ArrayList<Double> answers = new ArrayList<>();
+
+        for (int i = 0; i < mainMatrixSize; i++) {
+            answers.add(CalculateClass.determinantBigMatrix(deltaMatrix, deltaMatrix.size(), i));// тут будут храниться все решения для матриц
+        }
+
+        for (int i = 0; i < answers.size(); i++){
+            determinant += answers.get(i);
+        }
+
+        return determinant;
+    }
 
 //Вычисление дискриминанта матрицы
-    public double determinantBigMatrix(ArrayList<ArrayList<Integer>> matrix, Integer n, Integer startIndex){
+    public static double determinantBigMatrix(ArrayList<ArrayList<Integer>> matrix, Integer n, Integer startIndex){
         int[][] newArray = new int[n][n];
         ArrayList<Double> elemOfMainDiag = new ArrayList<>();
         ArrayList<Double> elemOfCollDiag = new ArrayList<>();
@@ -31,7 +55,7 @@ public class CalculateClass {
     }
 
 //Вычисление произведения элементов главной диагонали матрицы
-    private double calculateMainDiagonal(int[][] newArray){
+    private static double calculateMainDiagonal(int[][] newArray){
         double result = 1;
 
         for (int i = 0; i < newArray.length; i++){
@@ -41,7 +65,7 @@ public class CalculateClass {
     }
 
 //Вычисление произведения элементов побочной диагонали матрицы
-    private double calculateCollateralDiagonal(int[][] newArray){
+    private static double calculateCollateralDiagonal(int[][] newArray){
         double result = 1;
 
         for (int i = 0; i < newArray.length; i++){
