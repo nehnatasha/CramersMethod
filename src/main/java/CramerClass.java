@@ -23,6 +23,12 @@ public class CramerClass {
         return additionalMatrix;
     }
 
+    /**
+     * Cоздание дельта-матриц для нахождения их дискриминанта
+     *
+     * @param matrix, n, result
+     * @return
+     */
     public static ArrayList<ArrayList<Integer>> createDeltaMatrix(ArrayList<ArrayList<Integer>> matrix, int n, ArrayList<Integer> result) {
         ArrayList<ArrayList<Integer>> deltaMatrix = cloneArray(matrix);
         for (int i = 0; i < matrix.size(); i++) {
@@ -38,6 +44,12 @@ public class CramerClass {
         return deltaMatrix;
     }
 
+    /**
+     * Метод для глубокого копирования массива
+     *
+     * @param array
+     * @return
+     */
     //глубокое копирование массива
     private static ArrayList<ArrayList<Integer>> cloneArray(ArrayList<ArrayList<Integer>> array){
         ArrayList<ArrayList<Integer>> deltaMatrix = new ArrayList<>();

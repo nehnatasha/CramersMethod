@@ -6,13 +6,14 @@ public class MainClass {
         String matrixStr = "3 -2 4\n3 4 -2\n2 -1 -1";
         ArrayList<ArrayList<Integer>> matrixMain = parseMatrixFromString(matrixStr);
         int mainMatrixSize = matrixMain.size();
-
+        //Создание дополнительной матрицы из первоначальной матрицы
         ArrayList<ArrayList<Integer>> additionalMatrix = CramerClass.createAdditionalMatrix(matrixMain);
 
-        //Результаты равенств
+        //Значения равенств уравнений
         String resultStr = "21 9 10";
         ArrayList<Integer> result = parseArrayFromString(resultStr);
 
+        //Значение дискриминанта первоначальной матрицы
         double determinant = CalculateClass.calculateDeterminant(additionalMatrix, mainMatrixSize);
 
         //Проверка, что система имеет решение
@@ -31,6 +32,7 @@ public class MainClass {
             answer.add(CalculateClass.calculateDeltaMatrixDeterminant(deltaMatrix, mainMatrixSize));
         }
 
+        //Вычисление решений системы и вывод
         ArrayList<Double> deltaAnswers = new ArrayList<>();
         for (int i = 0; i < answer.size(); i ++){
             deltaAnswers.add(answer.get(i) / determinant);
@@ -39,7 +41,7 @@ public class MainClass {
     }
 
     /**
-     *
+     *Метод для парсинга введенных строк в матрицу
      *
      * @param matrixStr
      * @return
@@ -56,7 +58,7 @@ public class MainClass {
     }
 
     /**
-     *
+     *Метод для парсинга введенных строк в массив
      *
      * @param arrayStr
      * @return

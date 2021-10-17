@@ -1,6 +1,13 @@
 import java.util.ArrayList;
 
 public class CalculateClass {
+
+    /**
+     *Метод для вызова вычисления дискриминанта матрицы
+     *
+     * @param matrix,size
+     * @return
+     */
     public static double calculateDeterminant(ArrayList<ArrayList<Integer>> matrix, int size) {
         double determinant = 0.0;
 
@@ -11,6 +18,12 @@ public class CalculateClass {
         return determinant;
     }
 
+    /**
+     *Метод для вычисления дискриминанта дельта-матриц
+     *
+     * @param deltaMatrix,mainMatrixSize
+     * @return
+     */
     public static double calculateDeltaMatrixDeterminant(ArrayList<ArrayList<Integer>> deltaMatrix, int mainMatrixSize) {
         double determinant = 0.0;
         ArrayList<Double> answers = new ArrayList<>();
@@ -26,7 +39,12 @@ public class CalculateClass {
         return determinant;
     }
 
-//Вычисление дискриминанта матрицы
+    /**
+     *Метод для вычисления дискриминанта матрицы
+     *
+     * @param matrix,n,startIndex
+     * @return
+     */
     public static double determinantBigMatrix(ArrayList<ArrayList<Integer>> matrix, Integer n, Integer startIndex){
         int[][] newArray = new int[n][n];
         ArrayList<Double> elemOfMainDiag = new ArrayList<>();
@@ -35,7 +53,7 @@ public class CalculateClass {
         double secondResult = 0.0;
         double mainResult = 0.0;
 
-//Если строк-столбцов в матрице не равно 2
+        //Если строк-столбцов в матрице не равно 2
         if (n != 2) {
             for (int i = 0; i < n; i++) {
                 for (int j = startIndex; j < startIndex + n; j++) {
@@ -47,14 +65,19 @@ public class CalculateClass {
             secondResult = calculateCollateralDiagonal(newArray);
             mainResult = firstResult - secondResult;
 
-//Если строк-столбцов в матрице равно 2
+        //Если строк-столбцов в матрице равно 2
         } else {
             mainResult = (matrix.get(0).get(0) * matrix.get(1).get(1)) - (matrix.get(1).get(0) * matrix.get(0).get(1));
         }
         return mainResult;
     }
 
-//Вычисление произведения элементов главной диагонали матрицы
+    /**
+     *Метод для вычисления произведения элементов главной диагонали матрицы
+     *
+     * @param newArray
+     * @return
+     */
     private static double calculateMainDiagonal(int[][] newArray){
         double result = 1;
 
@@ -64,7 +87,12 @@ public class CalculateClass {
         return result;
     }
 
-//Вычисление произведения элементов побочной диагонали матрицы
+    /**
+     *Метод для вычисления произведения элементов побочной диагонали матрицы
+     *
+     * @param newArray
+     * @return
+     */
     private static double calculateCollateralDiagonal(int[][] newArray){
         double result = 1;
 
