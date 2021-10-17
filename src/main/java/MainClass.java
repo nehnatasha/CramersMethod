@@ -27,39 +27,33 @@ public class MainClass {
         }
 
         //Инициализация дополненной матрицы для определения ее дискрименанта
-        CramerClass cramerClass = new CramerClass();
-        cramerClass.initAdditionalArray(matrixRowsStr);
-//        for (String matrixRowStr : matrixRowsStr) {
-//            String[] matrixRowArr = matrixRowStr.split(" ");
-//            ArrayList<Integer> matrixRow = new ArrayList<>();
-//            for (String elStr : matrixRowArr) {
-//                matrixRow.add(Integer.parseInt(elStr));
-//            }
-//            for (int i = 0; i < matrixRowArr.length - 1; i++) {
-//                matrixRow.add(Integer.parseInt(matrixRowArr[i]));
-//            }
-//            matrix.add(matrixRow);
-//        }
+        for (String matrixRowStr : matrixRowsStr) {
+            String[] matrixRowArr = matrixRowStr.split(" ");
+            ArrayList<Integer> matrixRow = new ArrayList<>();
+            for (String elStr : matrixRowArr) {
+                matrixRow.add(Integer.parseInt(elStr));
+            }
+            for (int i = 0; i < matrixRowArr.length - 1; i++) {
+                matrixRow.add(Integer.parseInt(matrixRowArr[i]));
+            }
+            matrix.add(matrixRow);
+        }
 
         //Инициализация главной матрицы
-        cramerClass.initMainArray(matrixRowsStr);
-//        for (String matrixRowStr : matrixRowsStr) {
-//            String[] matrixRowArr = matrixRowStr.split(" ");
-//            ArrayList<Integer> matrixRow = new ArrayList<>();
-//            for (String elStr : matrixRowArr) {
-//                matrixRow.add(Integer.parseInt(elStr));
-//            }
-//            matrixMain.add(matrixRow);
-//        }
+        for (String matrixRowStr : matrixRowsStr) {
+            String[] matrixRowArr = matrixRowStr.split(" ");
+            ArrayList<Integer> matrixRow = new ArrayList<>();
+            for (String elStr : matrixRowArr) {
+                matrixRow.add(Integer.parseInt(elStr));
+            }
+            matrixMain.add(matrixRow);
+        }
 
         //Вычисление дискрименанта главной матрицы (используя дополненную матрицу)
-//        for (int i = 0; i < matrixSize; i++) {
-//            termite += calculateClass.determinantBigMatrix(matrix, matrixSize, i);
-//        }
-
         for (int i = 0; i < matrixSize; i++) {
-            termite += calculateClass.determinantBigMatrix(cramerClass.initAdditionalArray(matrixRowsStr), matrixSize, i);
+            termite += calculateClass.determinantBigMatrix(matrix, matrixSize, i);
         }
+
 //Проверка, что система имеет решение
         if (termite != 0) {
             System.out.println("Система имеет единственное решение");
@@ -71,7 +65,6 @@ public class MainClass {
         ArrayList<Double> answer = new ArrayList<>();
         //Составление дельта-матриц
         //Вычисление дискрименанта дельта-матриц
-        //не выходит обновить deltaMatrix до матрицы matrixMain, чтобы дальше уже заменить столбец на результаты равенств
         for (int n = 0; n < matrixSize; n++) {
             ArrayList<ArrayList<Integer>> deltaMatrix = cloneArray(matrixMain);
             for (int i = 0; i < matrixMain.size(); i++) {
@@ -93,12 +86,12 @@ public class MainClass {
                 resultDeltaMatrix += answers.get(i);
             }
             answer.add(resultDeltaMatrix);
-            System.out.println(answers);
         }
 
         for (int i = 0; i < answer.size(); i ++){
             deltaAnswers.add(answer.get(i) / termite);
         }
+        System.out.println(deltaAnswers);
     }
 
     //глубокое копирование массива
